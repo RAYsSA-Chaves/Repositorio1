@@ -7,8 +7,7 @@ if resultado == 0:
 else:
     print(num, "é ímpar")
 '''
-from pydoc import describe
-from sys import float_info
+
 
 #02
 '''
@@ -57,13 +56,13 @@ else:
 #06
 '''
 nota = float(input("Nota: "))
-if nota == 9 or nota == 10:
+if nota >= 9:
     print("Nota A")
-elif nota == 7 or nota == 8:
+elif nota >= 7:
     print("Nota B")
-elif nota == 5 or nota == 6:
+elif nota >= 5:
     print("Nota C")
-elif nota == 4 or nota == 3:
+elif nota >= 2:
     print("Nota D")
 else:
     print("Nota E")
@@ -179,6 +178,93 @@ else:
 
 
 #14
-data = input("Digite a data: ")
-data = datetime.strptime(data, dd/nm/aaaa)
-print(data)
+'''
+data = input("Digite uma data no formato dd/mm/aaaa: ")
+
+#verificar se está no formato correto -> 10 caracteres no total e "/" nos lugares certos:
+if len(data) == 10 and data[2] == "/" and data[5] == "/":
+    dia, mes, ano = data.split("/") #split = separar; baseado em um separador específico
+    print(f"Data convertida: {ano}-{mes}-{dia}")
+else:
+    print("Formato inválido")
+'''
+
+
+#15
+'''
+import re 
+#serve para trabalhar com expressões regulares e buscar, substituir e manipular textos
+
+print("A senha deve conter no mínimo 8 caracteres, 1 letra maiúscula, 1 letra minúscula, 1 número e 1 caractere especial (@, #, $, %, &)")
+senha = input("Crie uma senha: ")
+
+qtd_valida = len(senha) >= 8
+tem_maiuscula = bool(re.search(r"[A-Z]", senha))
+tem_minuscula = bool(re.search(r"[a-z]", senha))
+tem_numero = bool(re.search(r"[0-9]", senha))
+tem_especial = bool(re.search(r"[@#$%&]", senha))
+
+if (qtd_valida and tem_maiuscula and tem_minuscula and tem_numero and tem_especial) == True:
+    print("Senha definida com sucesso!")
+elif qtd_valida == False:
+    print("A senha deve ter pelo menos 8 caracteres!")
+elif tem_maiuscula == False:
+    print("Falta uma letra maiúscula!")
+elif tem_minuscula == False:
+    print("Falta uma letra minúscula!")
+elif tem_numero == False:
+    print("Falta um número!")
+else:
+    print("Falta um caractere especial (@, #, $, %, &)")
+'''
+
+
+#16
+'''
+num = int(input("Número: "))
+if num < 0:
+    print("Não é possível calcular a raiz quadrada de um número negativo")
+elif num > 100:
+    print("Número muito grande, reduza para um valor abaixo de 100")
+else:
+    resultado = num**0.5
+    print(f"Resultado: {resultado:.02f}")'
+'''
+
+
+#17
+'''
+import re
+
+data = input("Digite uma data no formato dd/mm/aaaa: ")
+
+#verificar se o formato é válido:
+if len(data) == 10 and data[2] == "/" and data[5] == "/":
+    dia, mes, ano = data.split("/")
+    if dia.isdigit() and mes.isdigit() and ano.isdigit(): #verifica se é número
+        mesValido = bool(re.search(r"[1-12]", mes))
+    else:
+        print("Data inválida")
+
+#verificar se a data é válida de acordo com as regras:        
+if mesValido == True:
+    if mes == 4 or mes == 6 or mes == 9 or mes == 11:
+        diaValido = bool(re.search(r"[1-30]", dia))
+    elif mes == 1 or mes == 3 or mes == 5 or mes == 7 or mes == 8 or mes == 10 or mes == 12:
+        diaValido = bool(re.search(r"[1-31]", dia))
+    else:
+        ano = int(ano)
+        if ano%4 == 0 or (ano%100 == 0 and ano%400 == 0):
+            diaValido = bool(re.search(r"[1-29]", dia))
+        else:
+            diaValido = bool(re.search(r"[1-28]", dia))
+
+if diaValido == True:
+    print(f"Data convertida: {ano}-{mes}-{dia}")
+else:
+    print("Data inválida")
+'''
+
+
+#18
+conta = input("Digite uma operação: ")
