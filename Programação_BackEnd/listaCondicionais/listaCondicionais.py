@@ -279,12 +279,39 @@ else:
 
 #19
 cpf = input("Digite um CPF (somente números): ")
-if len(cpf) == 11:
-    if cpf.isdigit():
-        cpfValido = True
-    else:
-        cpfValido = False
-else:
-    cpfValido = False
 
-n1 = int(cpf[0])
+if len(cpf) != 11:
+    print("CPF inválido")
+else:
+    n1 = int(cpf[0])
+    n2 = int(cpf[1])
+    n3 = int(cpf[2])
+    n4 = int(cpf[3])
+    n5 = int(cpf[4])
+    n6 = int(cpf[5])
+    n7 = int(cpf[6])
+    n8 = int(cpf[7])
+    n9 = int(cpf[8])
+    v1 = int(cpf[9])
+    v2 = int(cpf[10])
+
+    #cálculo do primeiro dígito verificador:
+    soma1 = (n1 * 10) + (n2 * 9) + (n3 * 8) + (n4 * 7) + (n5 * 6) + (n6 * 5) + (n7 * 4) + (n8 * 3) + (n9 * 2) 
+    resto1 = soma1 % 11
+    if resto1 < 2:
+        v1_calculado = 0
+    else: 
+        v1_calculado = 11 - resto1
+
+    #cálculo do segundo dígito verificador:
+    soma2 = (n1 * 11) + (n2 * 10) + (n3 * 9) + (n4 * 8) + (n5 * 7) + (n6 * 6) + (n7 * 5) + (n8 * 4) + (n9 * 3) 
+    resto2 = soma2 % 11
+    if resto2 < 2:
+        v2_calculado = 0
+    else:
+        v2_calculado = 11 - resto2
+
+    if v1_calculado == v1 and v2_calculado == v2:
+        print("CPF válido")
+    else:
+        print("CPF inválido")
