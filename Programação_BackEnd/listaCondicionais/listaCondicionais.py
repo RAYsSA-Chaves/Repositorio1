@@ -265,6 +265,7 @@ else:
 
 
 #18
+'''
 import re
 
 expressao = input("Digite uma expressão matemática: ")
@@ -274,3 +275,16 @@ if re.fullmatch(r"[0-9+-*/().]", expressao):
     print("Resultado: ", resultado)
 else:
     print("Expressão inválida")
+'''
+
+#19
+cpf = input("Digite um CPF (somente números): ")
+if len(cpf) == 11:
+    if cpf.isdigit():
+        cpfValido = True
+    else:
+        cpfValido = False
+else:
+    cpfValido = False
+
+n1 = int(cpf[0])
