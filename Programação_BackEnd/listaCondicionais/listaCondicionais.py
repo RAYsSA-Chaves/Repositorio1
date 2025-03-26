@@ -236,38 +236,29 @@ else:
 '''
 data = input("Digite uma data no formato dd/mm/aaaa: ")
 
-#verificar se o formato é válido:
-if len(data) == 10 and data[2] == "/" and data[5] == "/":
-    dia, mes, ano = data.split("/")
-    if dia.isdigit() and mes.isdigit() and ano.isdigit(): #verifica se é número
-        dia = int(dia)
-        mes = int(mes)
-        ano = int(ano)
-        if mes > 1 and mes < 12:
-            mesValido = True
-        else:
-            mesValido = False
-    else:
-        mesValido = False
-else:
-    mesValido = False
+qtdValida = len(data) == 10 and data[2] == "/" and data[5] == "/"
+dia, mes, ano = data.split("/")
+digitoValido = dia.isdigit() and mes.isdigit() and ano.isdigit() #verifica se é número
+dia = int(dia)
+mes = int(mes)
+ano = int(ano)
+mesValido = mes > 1 and mes < 12
 
-#verificar se a data é válida de acordo com as regras:        
-if mesValido == True:
-    if mes == 4 or mes == 6 or mes == 9 or mes == 11:
-        diaValido = dia >= 1 and dia <= 30
-    elif mes == 1 or mes == 3 or mes == 5 or mes == 7 or mes == 8 or mes == 10 or mes == 12:
-        diaValido = dia >= 1 and dia <= 31
+if (qtdValida and digitoValido and mesValido) == True:
+    if mes == (4 or 6 or 9 or 11):
+        dataValida = dia >= 1 and dia <= 30
+    elif mes == (1 or 3 or 5 or 7 or 8 or 10 or 12):
+        dataValida = dia >=1 and dia <= 31
     else:
-        if ano%4 == 0 or (ano%100 == 0 and ano%400 == 0):
-            diaValido = dia >= 1 and dia <= 29
+        if ano % 4 == 0 or (ano % 100 == 0 and ano % 400 == 0):
+            dataValida = dia >= 1 and dia <= 29
         else:
-            diaValido = dia >= 1 and dia <= 28
+            dataValida = dia >= 1 and dia <= 28
 else:
-    diaValido = False
+    dataValida = False
 
-if diaValido == True:
-    print(f"Data convertida: {ano}-{mes}-{dia}")
+if dataValida == True:
+    print(f"Data convertida: {ano}-{mes:02d}-{dia:02d}")
 else:
     print("Data inválida")
 '''
