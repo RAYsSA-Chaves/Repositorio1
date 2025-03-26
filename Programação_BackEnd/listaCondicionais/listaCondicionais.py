@@ -265,4 +265,12 @@ else:
 
 
 #18
-conta = input("Digite uma operação: ")
+import re
+
+expressao = input("Digite uma expressão matemática: ")
+
+if re.fullmatch(r"[0-9+-*/().]", expressao):
+    resultado = eval(expressao) #eval -> analisa expressões armazenadas como strings
+    print("Resultado: ", resultado)
+else:
+    print("Expressão inválida")
