@@ -234,30 +234,37 @@ else:
 
 #17
 '''
-import re
-
 data = input("Digite uma data no formato dd/mm/aaaa: ")
 
 #verificar se o formato é válido:
 if len(data) == 10 and data[2] == "/" and data[5] == "/":
     dia, mes, ano = data.split("/")
     if dia.isdigit() and mes.isdigit() and ano.isdigit(): #verifica se é número
-        mesValido = bool(re.search(r"[1-12]", mes))
+        dia = int(dia)
+        mes = int(mes)
+        ano = int(ano)
+        if mes > 1 and mes < 12:
+            mesValido = True
+        else:
+            mesValido = False
     else:
-        print("Data inválida")
+        mesValido = False
+else:
+    mesValido = False
 
 #verificar se a data é válida de acordo com as regras:        
 if mesValido == True:
     if mes == 4 or mes == 6 or mes == 9 or mes == 11:
-        diaValido = bool(re.search(r"[1-30]", dia))
+        diaValido = dia >= 1 and dia <= 30
     elif mes == 1 or mes == 3 or mes == 5 or mes == 7 or mes == 8 or mes == 10 or mes == 12:
-        diaValido = bool(re.search(r"[1-31]", dia))
+        diaValido = dia >= 1 and dia <= 31
     else:
-        ano = int(ano)
         if ano%4 == 0 or (ano%100 == 0 and ano%400 == 0):
-            diaValido = bool(re.search(r"[1-29]", dia))
+            diaValido = dia >= 1 and dia <= 29
         else:
-            diaValido = bool(re.search(r"[1-28]", dia))
+            diaValido = dia >= 1 and dia <= 28
+else:
+    diaValido = False
 
 if diaValido == True:
     print(f"Data convertida: {ano}-{mes}-{dia}")
