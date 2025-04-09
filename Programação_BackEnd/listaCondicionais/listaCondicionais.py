@@ -270,7 +270,7 @@ import re
 
 expressao = input("Digite uma expressão matemática: ")
 
-if re.fullmatch(r"[0-9+-*/().]", expressao):
+if re.fullmatch(r"[0-9\-+*/().]+", expressao):
     resultado = eval(expressao) #eval -> analisa expressões armazenadas como strings
     print("Resultado: ", resultado)
 else:
