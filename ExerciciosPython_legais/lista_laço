@@ -1,0 +1,301 @@
+#Exercicio 1
+'''
+- Solicitar 10 números
+- Contar quantos são múltiplos de 3 
+- Usar for
+'''
+
+'''
+qtd_multiplos = 0
+
+for i in range(10):
+    num = float(input("Digite um número: "))
+    if abs(num % 3) < 1:
+        qtd_multiplos += 1
+
+print(f"{qtd_multiplos} desses números são múltiplos de 3.")
+'''
+
+#Exercicio 2
+'''
+- Permitir senhas infinitas até acertar
+- Usar while True
+'''
+
+'''
+SENHA = "DAIjeS@m11"
+
+while True:
+    tentativa = input("Senha: ")
+    if tentativa == SENHA:
+        print("Senha correta!")
+        break
+    else:
+        print("Senha incorreta. Tente novamente.")
+'''
+
+#Exercicio 3
+'''
+- Repetir o menu até o usuário escolher sair
+- Usar while e break
+'''
+
+'''
+while True:
+    print("Escolha a opção numérica:")
+    escolha = input("Menu:  [1] Sair\n")
+    if escolha == "1":
+        break
+'''
+
+#Exercicio 4
+'''
+- Pedir dois números
+- Exibir todos os números primos entre eles
+- Usar for
+'''
+
+'''
+n1 = int(input("Digite um número inteiro: "))
+n2 = int(input("Digite outro número inteiro maior que o primeiro: "))
+
+primos = []
+primo = True
+
+for i in range(n1,n2):
+    for divisor in range(2,i):
+        if i % divisor == 0:
+            primo = False
+            break
+        else:
+            primo = True
+    if primo and i > 1:
+        primos.append(i)
+print(f"Números primos entre {n1} e {n2}: {primos}")
+'''
+
+#Exercicio 5
+'''
+- Três tentativas para acertar a senha
+- Se errar todas, acesso é bloqueado
+- Usar while
+'''
+
+'''
+SENHA = "1235"
+
+tentativa_qtd = 0
+tentativa = ""
+
+while tentativa != SENHA:
+    if tentativa_qtd < 3:
+        tentativa = input("Senha: ")
+        tentativa_qtd += 1
+        if tentativa == SENHA:
+            print("Senha correta!")
+            break
+        else:
+            print(f"Senha incorreta. {3-tentativa_qtd} tentativas restantes.")
+    else:
+        print("Acesso bloqueado.")
+        break
+'''
+
+#Exercicio 6
+'''
+- Solicitar 10 números
+- Separar em duas listas (pares e ímpares)
+- Exibir as duas listas
+'''
+
+'''
+pares = []
+impares = []
+
+for i in range(1,11):
+    num = float(input("Digite um número: "))
+    if abs(num % 2) < 1:
+        pares.append(num)
+    else:
+        impares.append(num)
+print(f"Números pares: {pares}")
+print(f"Números ímpares: {impares}")
+'''
+
+#Exercicio 7
+'''
+- Pedir uma frase
+- Contar quantas vogais há nela (de cada uma)
+- Mostrar o total de cada vogal
+'''
+
+'''
+import unicodedata
+
+frase = input("Escreva uma frase: ").lower()
+frase_sem_acento = unicodedata.normalize("NFKD", frase)  #remove acentos
+
+#definindo todas as variáveis das vogais com um dicionário:
+qtd_vogais = {
+    "a" : 0,
+    "e" : 0,
+    "i" : 0,
+    "o" : 0,
+    "u" : 0,
+}
+
+#percorrendo cada caractere da frase:
+for caractere in frase_sem_acento:
+    if caractere in "aeiou":
+        qtd_vogais[caractere] += 1  #incrementa a contagem da vogal correspondente ao caractere
+
+#percorrendo os itens do dicionário para imprimir:
+for vogal, qtd in qtd_vogais.items():  #pega chave e valor
+    print(f"{vogal} = {qtd}")
+'''
+
+#Exercicio 8
+'''
+- "Lançar" uma moeda até cair "cara" três vezes seguidas
+- Usar random.choice e while
+'''
+
+'''
+import random
+
+lançamento1 = "cara"
+lançamento2 = "coroa"
+lançamento3 = ""
+opçoes = ["cara", "coroa"]
+
+while lançamento1 != "cara" or lançamento2 != "cara" or lançamento3 != "cara":
+    lançamento1 = random.choice(opçoes)
+    print(f"1: {lançamento1}")
+    lançamento2 = random.choice(opçoes)
+    print(f"2: {lançamento2}")
+    lançamento3 = random.choice(opçoes)
+    print(f"3: {lançamento3}")
+    print()
+'''
+
+#Exercicio 9
+'''
+- Ler uma sequência de números
+- Determinar quantos são menores que a média
+- Exibir a quantidade
+'''
+
+'''
+numeros = []
+total = 0
+qtd_numeros = 0
+menores = 0
+
+for i in range(5):
+    num = float(input("Digite um número: "))
+    qtd_numeros +=1
+    numeros.append(num)
+    total += num
+
+media = total/qtd_numeros
+
+for n in numeros:
+    if n < media:
+        menores += 1
+
+print(f"A média desses números é {media:.1f}. {menores} números são menores que a média.")
+'''
+
+#Exercicio 10
+'''
+- Ler uma sequência de números
+- Determinar o segundo maior
+'''
+
+'''
+numeros = []
+
+for i in range(5):
+    num = float(input("Digite um número: "))
+    numeros.append(num)
+
+maior = numeros[0]
+for n in numeros:
+    if n > maior:
+        maior = n
+
+numeros.remove(maior)
+
+maior = numeros[0]
+for n in numeros:
+    if n > maior:
+        maior = n
+
+print(f"O segundo maior número é: {maior}")
+'''
+
+#Desafio 1 - Simulações de futuras populações de coelhos
+'''
+taxa_reproduçao = float(input("Digite a taxa de reprodução a cada geração de coelhos (%): "))
+taxa_mortalidade = float(input("Digite a taxa de mortalidade a cada geração de coelhos (%): "))
+qtd_inicial = int(input("Digite a quantidade inicial de coelhos: "))
+n_geraçao = int(input("Consultar geração n°: "))
+
+taxa_reproduçao = taxa_reproduçao/100
+taxa_mortalidade = taxa_mortalidade/100
+qtd_final = qtd_inicial
+
+for i in range(n_geraçao):
+    nascimentos = qtd_final * taxa_reproduçao
+    mortes = qtd_final * taxa_mortalidade
+    qtd_final = (qtd_final - mortes) + nascimentos
+print(f"A geração {n_geraçao} terá {qtd_final:.0f} coelhos.")
+'''
+
+#Desafio 2 - Jogo da forca
+
+import random
+
+lista_palavras = ["HIPOPOTAMO", "ARQUITETURA", "UNIVERSO", "AMOR", "BORBOLETA", "ORQUESTRA"]
+palavra_escolhida = random.choice(lista_palavras)
+palavra_oculta = palavra_escolhida
+palavra_escolhida = list(palavra_escolhida)
+
+for c in palavra_oculta:
+    palavra_oculta = palavra_oculta.replace(c, "_")
+palavra_oculta = list(palavra_oculta)
+
+tentativa = 1
+letras_chutadas = []
+
+print("======== JOGO DA FORCA ========")
+while palavra_oculta != palavra_escolhida:
+    while tentativa < 7:
+        print("Palavra: ", " ".join(palavra_oculta))
+        print("Letras que já foram: ", ", ".join(letras_chutadas))
+        letra = input("Chute uma letra: ").upper()
+        print()
+
+        if letra in palavra_escolhida:  #chutou uma letra certa
+            if letra not in letras_chutadas:  #letra não foi chutada ainda
+                letras_chutadas.append(letra)
+                for posiçao, caractere in enumerate(palavra_escolhida):  #percorre a palavra e retorna caractere e posição
+                    if caractere == letra:
+                        palavra_oculta[posiçao] = letra
+            else:  #letra já foi chutada
+                print(f"Você já chutou a letra {letra}!")
+                print()
+        else:  #chutou a letra errada
+            if letra not in letras_chutadas:
+                letras_chutadas.append(letra)
+            print(f"A palavra não tem {letra}! {6-tentativa} tentativas restantes!")
+            tentativa += 1
+            print()
+
+        if palavra_oculta == palavra_escolhida:
+            print(" ".join(palavra_oculta))
+            print("Parabéns! Você ganhou!")
+            break
+        elif tentativa == 7:
+            print("Você perdeu!")
+            print("A palavra era", "".join(palavra_escolhida))
