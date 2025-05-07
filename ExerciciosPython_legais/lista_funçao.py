@@ -59,8 +59,9 @@ calcular_troco(valor_compra, valor_pago)
 #05 - Verificar se o número é primo
 
 def eh_primo(n):
+    divisores = 0
     for i in range(1, n+1):
         if n % i == 0:
-            
+            divisores += 1   
 
 n = int(input("Digite um número inteiro para verificar se ele é primo: "))
