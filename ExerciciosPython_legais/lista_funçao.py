@@ -96,6 +96,5 @@ def contagem_regressiva(n):
     else:
         print("Fim")
 
-
 n = int(input("Digite um número inteiro para iniciar a contagem regressiva: "))
 contagem_regressiva(n)
