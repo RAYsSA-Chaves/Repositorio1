@@ -12,7 +12,7 @@ calcular_imc(peso, altura)
 
 #02 - Retornar o maior número entre os n números digitados pelo usuário
 '''
-def maior(lista_numeros):
+def maior_n(lista_numeros):
     maior = lista_numeros[1]
     for n in lista_numeros:
         if n > maior:
@@ -25,7 +25,7 @@ for i in range(qtd):
     num = float(input(f"Digite o {i+1}° número: "))
     lista_numeros.append(num)
 
-print(f"O maior número é {maior(lista_numeros)}")
+print(f"O maior número é {maior_n(lista_numeros)}")
 '''
 
 
@@ -57,11 +57,45 @@ calcular_troco(valor_compra, valor_pago)
 
 
 #05 - Verificar se o número é primo
-
+'''
 def eh_primo(n):
     divisores = 0
-    for i in range(1, n+1):
+    for i in range(2, n+1):
         if n % i == 0:
-            divisores += 1   
+            divisores += 1 
+        if divisores > 0:
+            return False
+        else:
+            return True  
 
 n = int(input("Digite um número inteiro para verificar se ele é primo: "))
+print(eh_primo(n))
+'''
+
+
+#06 - Contar vogais
+'''
+def contar_vogais(texto):
+    texto = texto.upper()
+    vogais = 0
+    for c in texto:
+        if c in ["A", "E", "I", "O", "U"]:
+            vogais += 1
+    return vogais
+
+texto = input("Digite um texto: ")
+print(f"{contar_vogais(texto)} vogais")
+'''
+
+
+#07 - Contagem regressiva com função recursiva
+def contagem_regressiva(n):
+    if n >= 1:
+        print(n)
+        contagem_regressiva(n-1)  #a função recursiva chama a si mesma durante sua execução
+    else:
+        print("Fim")
+
+
+n = int(input("Digite um número inteiro para iniciar a contagem regressiva: "))
+contagem_regressiva(n)
