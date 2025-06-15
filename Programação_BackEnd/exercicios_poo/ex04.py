@@ -1,3 +1,5 @@
+from typing import Union
+
 class ItemBiblioteca:
     def __init__(self, titulo: str, ano_publicacao: int):
         self.titulo = titulo
@@ -81,9 +83,57 @@ class Revista(ItemBiblioteca):
             disponibilidade = "Não"
         print(f"{self.titulo} | {self.ano_publicacao} | Edição: {self.edicao} | Disponível: {disponibilidade}")
 
+#------------------------------------------------
+
+class Biblioteca:
+    def __init__(self):
+        self.itens = {}
+
+    def adicionar_item(self, item: Union[ItemBiblioteca, Revista, ColecaoLivros]):
+        if item.titulo in self.itens:
+            print("O item já existe na biblioteca")
+        else:
+            self.itens[item.titulo] = item  #fica assim: "titulo" : "item"
+            print(f"{item.titulo} foi adicionado à biblioteca.")
+
+    def remover_titulo(self, titulo: str):
+        if titulo in self.itens:
+            del self.itens[titulo]
+            print(f"{titulo} removido da biblioteca.")
+        else:
+            print("O item não existe na biblioteca.")
+
+    def listar_itens_disponiveis(self):
+        print("Itens disponíveis:")
+        for item in self.itens.values():
+            if item.disponivel:
+                print(item.titulo)
+                print("--------")
+
+    def contar_itens_emprestados(self):
+        num = 0
+        print("Itens emprestados:")
+        for item in self.itens.values():
+            if not item.disponivel:
+                num += 1
+        print(num)
+
 #Testando:
+#Criando os objetos
+bibli = Biblioteca()
+livro = ItemBiblioteca("A Seleção", 2012)
 revista = Revista("Vogue", 1996, 5)
-revista.atualizar_edicao(6)
-restricao = revista.restringir_emprestimo(5)
-print(restricao)
-revista.obter_info()
+colecao = ColecaoLivros("Coleção 1", 2016)
+
+#Adicionando livros na coleção
+colecao.adicionar_livro(ItemBiblioteca("A Seleção", 2012))
+colecao.adicionar_livro(ItemBiblioteca("A Elite", 2013))
+
+#Usando os métodos da biblioteca
+bibli.adicionar_item(livro)
+bibli.adicionar_item(revista)
+bibli.adicionar_item(colecao)
+bibli.remover_titulo("Coleção 1")
+livro.emprestar()
+bibli.listar_itens_disponiveis()
+bibli.contar_itens_emprestados()
